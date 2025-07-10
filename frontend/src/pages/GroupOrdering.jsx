@@ -20,14 +20,14 @@ export default function GroupOrdering() {
           onClick={() => navigate("/menu")}
           className="bg-[#1a1a1a] px-10 py-4 rounded-xl text-lg font-medium border border-gray-700 text-white cursor-pointer hover:bg-[#2a2a2a] transition"
         >
-          🍽️ View Menu
+          🍽️ Dine In  
         </button>
 
         <button
           onClick={() => navigate("/smartserve")}
           className="bg-[#1a1a1a] px-10 py-4 rounded-xl text-lg font-medium border border-gray-700 text-white cursor-pointer hover:bg-[#2a2a2a] transition"
         >
-          🎙️ Smart Serve
+          🍽️ Take Away
         </button>
       </div>
 

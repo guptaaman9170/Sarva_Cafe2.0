@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import logo from "../assets/images/logo.png"; // adjust if needed
+import logo from "../assets/images/logo.png"; // Adjust the path if needed
 
 export default function Landing() {
   const [name, setName] = useState("");
@@ -10,31 +10,31 @@ export default function Landing() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (!name || !phone) {
-      return alert("Please enter both name and phone number");
+    if (!name.trim() || !phone.trim()) {
+      return alert("Please fill in both name and phone number.");
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+      return alert("Please enter a valid 10-digit phone number.");
     }
 
     try {
-      // Save to backend
       await axios.post("http://localhost:5000/api/users", {
         name,
         phone,
       });
 
-      // Save locally
       localStorage.setItem("user", JSON.stringify({ name, phone }));
-
-      // Redirect
       navigate("/group-ordering");
     } catch (error) {
       console.error("Error saving user:", error);
-      alert("Something went wrong. Please try again.");
+      alert(error?.response?.data?.message || "Something went wrong. Please try again.");
     }
   };
 
   return (
     <div className="relative min-h-screen text-white flex items-center justify-center overflow-hidden">
-      {/* 🖼️ Background Image */}
+      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center z-0 brightness-75"
         style={{
